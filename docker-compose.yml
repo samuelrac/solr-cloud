@@ -3,10 +3,8 @@ services:
 
   solr1:
     container_name: solr1
+    image: samuelrac/solr:8.8.2
     restart: always
-    build:
-      context: ./
-      dockerfile: solr.dockerfile
     volumes:
       - solr_data:/var/solr/data
     ports:
@@ -22,10 +20,8 @@ services:
 
   solr2:
     container_name: solr2
+    image: samuelrac/solr:8.8.2
     restart: always
-    build:
-      context: ./
-      dockerfile: solr.dockerfile
     volumes:
       - solr_data:/var/solr/data
     ports:
@@ -41,10 +37,8 @@ services:
 
   solr3:
     container_name: solr3
+    image: samuelrac/solr:8.8.2
     restart: always
-    build:
-      context: ./
-      dockerfile: solr.dockerfile
     volumes:
       - solr_data:/var/solr/data
     ports:
