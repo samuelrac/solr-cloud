@@ -77,6 +77,9 @@ services:
   
   zk1_exp:
     image: dabealu/zookeeper-exporter
+    restart: always
+    networks:
+      - solr
     ports:
       - 9141:9141
     command: --zk-hosts="zk1:2181"
@@ -102,6 +105,9 @@ services:
 
   zk2_exp:
     image: dabealu/zookeeper-exporter
+    restart: always
+    networks:
+      - solr
     ports:
       - 9142:9141
     command: --zk-hosts="zk2:2181"
@@ -127,6 +133,9 @@ services:
 
   zk3_exp:
     image: dabealu/zookeeper-exporter
+    restart: always
+    networks:
+      - solr
     ports:
       - 9143:9141
     command: --zk-hosts="zk3:2181"
