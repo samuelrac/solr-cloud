@@ -7,9 +7,9 @@ services:
     image: samuelrac/solr:8.8.2
     restart: always
     volumes:
-      - solr_data:/var/solr/data
+      - solr_data:/var/solr
     ports:
-     - "8981:8983"
+     - "0.0.0.0:8981:8983"
     environment:
       - SOLR_AUTH_TYPE=basic
       - ZK_HOST=zk1:2181,zk2:2181,zk3:2181
@@ -25,9 +25,9 @@ services:
     image: samuelrac/solr:8.8.2
     restart: always
     volumes:
-      - solr_data:/var/solr/data
+      - solr_data:/var/solr
     ports:
-     - "8982:8983"
+     - "0.0.0.0:8982:8983"
     environment:
       - SOLR_AUTH_TYPE=basic
       - ZK_HOST=zk1:2181,zk2:2181,zk3:2181
@@ -43,9 +43,9 @@ services:
     image: samuelrac/solr:8.8.2
     restart: always
     volumes:
-      - solr_data:/var/solr/data
+      - solr_data:/var/solr
     ports:
-     - "8983:8983"
+     - "0.0.0.0:8983:8983"
     environment:
       - SOLR_AUTH_TYPE=basic
       - ZK_HOST=zk1:2181,zk2:2181,zk3:2181
@@ -62,10 +62,12 @@ services:
     container_name: zk1
     hostname: zk1
     ports:
-      - 2181:2181
-      - 7001:7000
+      - "0.0.0.0:2181:2181"
+      - "0.0.0.0:7001:7000"
     volumes:
+      - zookeeper_log:/logs
       - zookeeper_data:/data
+      - zookeeper_datalog:/datalog
       - zookeeper_wd:/apache-zookeeper-3.7.0-bin
     environment:
       ZOO_MY_ID: 1
@@ -81,7 +83,7 @@ services:
     networks:
       - solr
     ports:
-      - 9141:9141
+      - "0.0.0.0:9141:9141"
     command: --zk-hosts="zk1:2181"
 
   zk2:
@@ -90,10 +92,12 @@ services:
     container_name: zk2
     hostname: zk2
     ports:
-      - 2182:2181
-      - 7002:7000
+      - "0.0.0.0:2182:2181"
+      - "0.0.0.0:7002:7000"
     volumes:
+      - zookeeper_log:/logs
       - zookeeper_data:/data
+      - zookeeper_datalog:/datalog
       - zookeeper_wd:/apache-zookeeper-3.7.0-bin
     environment:
       ZOO_MY_ID: 2
@@ -109,7 +113,7 @@ services:
     networks:
       - solr
     ports:
-      - 9142:9141
+      - "0.0.0.0:9142:9141"
     command: --zk-hosts="zk2:2181"
 
   zk3:
@@ -118,10 +122,12 @@ services:
     container_name: zk3
     hostname: zk3
     ports:
-      - 2183:2181
-      - 7003:7000
+      - "0.0.0.0:2183:2181"
+      - "0.0.0.0:7003:7000"
     volumes:
+      - zookeeper_log:/logs
       - zookeeper_data:/data
+      - zookeeper_datalog:/datalog
       - zookeeper_wd:/apache-zookeeper-3.7.0-bin
     environment:
       ZOO_MY_ID: 3
@@ -137,16 +143,15 @@ services:
     networks:
       - solr
     ports:
-      - 9143:9141
+      - "0.0.0.0:9143:9141"
     command: --zk-hosts="zk3:2181"
 
 volumes:
   solr_data:
-    driver: local
   zookeeper_data:
-    driver: local
+  zookeeper_datalog:
+  zookeeper_log:
   zookeeper_wd:
-    driver: local
 
 networks:
   solr:
