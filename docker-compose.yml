@@ -7,7 +7,7 @@ services:
     image: samuelrac/solr:8.8.2
     restart: always
     volumes:
-      - solr_data:/var/solr
+      - solr1_data:/var/solr
     ports:
      - "0.0.0.0:8981:8983"
     environment:
@@ -25,7 +25,7 @@ services:
     image: samuelrac/solr:8.8.2
     restart: always
     volumes:
-      - solr_data:/var/solr
+      - solr2_data:/var/solr
     ports:
      - "0.0.0.0:8982:8983"
     environment:
@@ -43,7 +43,7 @@ services:
     image: samuelrac/solr:8.8.2
     restart: always
     volumes:
-      - solr_data:/var/solr
+      - solr3_data:/var/solr
     ports:
      - "0.0.0.0:8983:8983"
     environment:
@@ -65,10 +65,10 @@ services:
       - "0.0.0.0:2181:2181"
       - "0.0.0.0:7001:7000"
     volumes:
-      - zookeeper_log:/logs
-      - zookeeper_data:/data
-      - zookeeper_datalog:/datalog
-      - zookeeper_wd:/apache-zookeeper-3.7.0-bin
+      - zookeeper1_log:/logs
+      - zookeeper1_data:/data
+      - zookeeper1_datalog:/datalog
+      - zookeeper1_wd:/apache-zookeeper-3.7.0-bin
     environment:
       ZOO_MY_ID: 1
       ZOO_SERVERS: server.1=zk1:2888:3888;2181 server.2=zk2:2888:3888;2181 server.3=zk3:2888:3888;2181
@@ -95,10 +95,10 @@ services:
       - "0.0.0.0:2182:2181"
       - "0.0.0.0:7002:7000"
     volumes:
-      - zookeeper_log:/logs
-      - zookeeper_data:/data
-      - zookeeper_datalog:/datalog
-      - zookeeper_wd:/apache-zookeeper-3.7.0-bin
+      - zookeeper2_log:/logs
+      - zookeeper2_data:/data
+      - zookeeper2_datalog:/datalog
+      - zookeeper2_wd:/apache-zookeeper-3.7.0-bin
     environment:
       ZOO_MY_ID: 2
       ZOO_SERVERS: server.1=zk1:2888:3888;2181 server.2=zk2:2888:3888;2181 server.3=zk3:2888:3888;2181
@@ -125,10 +125,10 @@ services:
       - "0.0.0.0:2183:2181"
       - "0.0.0.0:7003:7000"
     volumes:
-      - zookeeper_log:/logs
-      - zookeeper_data:/data
-      - zookeeper_datalog:/datalog
-      - zookeeper_wd:/apache-zookeeper-3.7.0-bin
+      - zookeeper3_log:/logs
+      - zookeeper3_data:/data
+      - zookeeper3_datalog:/datalog
+      - zookeeper3_wd:/apache-zookeeper-3.7.0-bin
     environment:
       ZOO_MY_ID: 3
       ZOO_SERVERS: server.1=zk1:2888:3888;2181 server.2=zk2:2888:3888;2181 server.3=zk3:2888:3888;2181
@@ -147,11 +147,24 @@ services:
     command: --zk-hosts="zk3:2181"
 
 volumes:
-  solr_data:
-  zookeeper_data:
-  zookeeper_datalog:
-  zookeeper_log:
-  zookeeper_wd:
+  solr1_data:
+  solr2_data:
+  solr3_data:
+
+  zookeeper1_data:
+  zookeeper1_datalog:
+  zookeeper1_log:
+  zookeeper1_wd:
+
+  zookeeper2_data:
+  zookeeper2_datalog:
+  zookeeper2_log:
+  zookeeper2_wd:
+
+  zookeeper3_data:
+  zookeeper3_datalog:
+  zookeeper3_log:
+  zookeeper3_wd:
 
 networks:
   solr:
