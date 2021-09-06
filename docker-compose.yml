@@ -7,7 +7,7 @@ services:
     image: samuelrac/solr:8.8.2
     restart: always
     volumes:
-      - solr1_data:/var/solr
+      - solr1_data:/var/solr/data
     ports:
      - "0.0.0.0:8981:8983"
     environment:
@@ -25,7 +25,7 @@ services:
     image: samuelrac/solr:8.8.2
     restart: always
     volumes:
-      - solr2_data:/var/solr
+      - solr2_data:/var/solr/data
     ports:
      - "0.0.0.0:8982:8983"
     environment:
@@ -43,7 +43,7 @@ services:
     image: samuelrac/solr:8.8.2
     restart: always
     volumes:
-      - solr3_data:/var/solr
+      - solr3_data:/var/solr/data
     ports:
      - "0.0.0.0:8983:8983"
     environment:
