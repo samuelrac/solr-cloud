@@ -12,7 +12,7 @@ services:
      - "0.0.0.0:8981:8983"
     environment:
       - SOLR_AUTH_TYPE=basic
-      - SOLR_JAVA_MEM="-Xms1g -Xmx2g"
+      - SOLR_JAVA_MEM="-Xms1024M -Xmx2048M"
       - ZK_HOST=zk1:2181,zk2:2181,zk3:2181
     networks:
       - solr
@@ -44,7 +44,7 @@ services:
      - "0.0.0.0:8982:8983"
     environment:
       - SOLR_AUTH_TYPE=basic
-      - SOLR_JAVA_MEM="-Xms1g -Xmx2g"
+      - SOLR_JAVA_MEM="-Xms1024M -Xmx2048M"
       - ZK_HOST=zk1:2181,zk2:2181,zk3:2181
     networks:
       - solr
@@ -76,7 +76,7 @@ services:
      - "0.0.0.0:8983:8983"
     environment:
       - SOLR_AUTH_TYPE=basic
-      - SOLR_JAVA_MEM="-Xms1g -Xmx2g"
+      - SOLR_JAVA_MEM="-Xms1024M -Xmx2048M"
       - ZK_HOST=zk1:2181,zk2:2181,zk3:2181
     networks:
       - solr
