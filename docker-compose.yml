@@ -4,7 +4,7 @@ services:
 
   solr1:
     container_name: solr1
-    command: solr-foreground && /opt/solr/bin/solr zk cp /var/solr/data/security.json zk:security.json -z zk1:2181
+    command: bash -c "solr-foreground && /opt/solr/bin/solr zk cp /var/solr/data/security.json zk:security.json -z zk1:2181"
     image: samuelrac/solr:8.8.2
     restart: always
     volumes:
