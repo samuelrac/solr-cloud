@@ -1,4 +1,5 @@
 version: '3'
+
 services:
 
   solr1:
@@ -73,6 +74,12 @@ services:
       ZOO_CFG_EXTRA: "metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider metricsProvider.httpPort=7000 metricsProvider.exportJvmInfo=true"
     networks:
       - solr
+  
+  zk1_exp:
+    image: dabealu/zookeeper-exporter
+    ports:
+      - 9141:9141
+    command: --zk-hosts="zk1:2181"
 
   zk2:
     image: zookeeper:3.7.0
@@ -93,6 +100,12 @@ services:
     networks:
       - solr
 
+  zk2_exp:
+    image: dabealu/zookeeper-exporter
+    ports:
+      - 9142:9141
+    command: --zk-hosts="zk2:2181"
+
   zk3:
     image: zookeeper:3.7.0
     restart: always
@@ -111,6 +124,12 @@ services:
       ZOO_CFG_EXTRA: "metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider metricsProvider.httpPort=7000 metricsProvider.exportJvmInfo=true"
     networks:
       - solr
+
+  zk3_exp:
+    image: dabealu/zookeeper-exporter
+    ports:
+      - 9143:9141
+    command: --zk-hosts="zk3:2181"
 
 volumes:
   solr_data:
