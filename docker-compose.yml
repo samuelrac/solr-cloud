@@ -15,6 +15,19 @@ services:
       - ZK_HOST=zk1:2181,zk2:2181,zk3:2181
     networks:
       - solr
+    ulimits:
+      nofile:
+        soft: "65536"
+        hard: "65536"
+    deploy:
+      placement:
+        constraints: 
+          - "node.role == manager"
+      resources:
+        limits:
+          memory: 2560M
+        reservations:
+          memory: 2048M
     depends_on:
       - zk1
       - zk2
@@ -33,6 +46,19 @@ services:
       - ZK_HOST=zk1:2181,zk2:2181,zk3:2181
     networks:
       - solr
+    ulimits:
+      nofile:
+        soft: "65536"
+        hard: "65536"
+    deploy:
+      placement:
+        constraints: 
+          - "node.role == manager"
+      resources:
+        limits:
+          memory: 2560M
+        reservations:
+          memory: 2048M
     depends_on:
       - zk1
       - zk2
@@ -51,6 +77,19 @@ services:
       - ZK_HOST=zk1:2181,zk2:2181,zk3:2181
     networks:
       - solr
+    ulimits:
+      nofile:
+        soft: "65536"
+        hard: "65536"
+    deploy:
+      placement:
+        constraints: 
+          - "node.role == manager"
+      resources:
+        limits:
+          memory: 2560M
+        reservations:
+          memory: 2048M
     depends_on:
       - zk1
       - zk2
@@ -69,6 +108,14 @@ services:
       - zookeeper1_data:/data
       - zookeeper1_datalog:/datalog
       - zookeeper1_wd:/apache-zookeeper-3.7.0-bin
+    ulimits:
+      nofile:
+        soft: "65536"
+        hard: "65536"
+    deploy:
+      placement:
+        constraints: 
+          - "node.role == manager"
     environment:
       ZOO_MY_ID: 1
       ZOO_SERVERS: server.1=zk1:2888:3888;2181 server.2=zk2:2888:3888;2181 server.3=zk3:2888:3888;2181
@@ -99,6 +146,14 @@ services:
       - zookeeper2_data:/data
       - zookeeper2_datalog:/datalog
       - zookeeper2_wd:/apache-zookeeper-3.7.0-bin
+    ulimits:
+      nofile:
+        soft: "65536"
+        hard: "65536"
+    deploy:
+      placement:
+        constraints: 
+          - "node.role == manager"
     environment:
       ZOO_MY_ID: 2
       ZOO_SERVERS: server.1=zk1:2888:3888;2181 server.2=zk2:2888:3888;2181 server.3=zk3:2888:3888;2181
@@ -129,6 +184,14 @@ services:
       - zookeeper3_data:/data
       - zookeeper3_datalog:/datalog
       - zookeeper3_wd:/apache-zookeeper-3.7.0-bin
+    ulimits:
+      nofile:
+        soft: "65536"
+        hard: "65536"
+    deploy:
+      placement:
+        constraints: 
+          - "node.role == manager"
     environment:
       ZOO_MY_ID: 3
       ZOO_SERVERS: server.1=zk1:2888:3888;2181 server.2=zk2:2888:3888;2181 server.3=zk3:2888:3888;2181
